@@ -1,12 +1,8 @@
-![Wordle+](https://raw.githubusercontent.com/MikhaD/wordle/main/public/img/og_1200x630.png)
-<div align="center">
-  <a href="https://mikhad.github.io/wordle/" ><img src="https://github.com/MikhaD/wordle/workflows/Publish/badge.svg?branch=main" alt="Publish workflow"/></a>
-  <img src="https://img.shields.io/github/package-json/v/MikhaD/wordle" alt="GitHub package.json version" />
-</div>
+# Worlde+
 
----
 A recreation of the popular game [Wordle](https://www.nytimes.com/games/wordle/) by Josh Wardle (now purchased by the New York Times), with additional modes and features.
-Hosted on GitHub pages [here](https://mikhad.github.io/wordle/).
+
+Hosted at https://wordle.faltrock.de/.
 
 # Additional Features
 - Words are chosen from the list of words at random instead of in sequence, and the solution is not stored in localStorage, making it harder to cheat. The seed for the random number is created from the date, ensuring that everyone gets the same random number, so people can still compare answers.
@@ -41,15 +37,6 @@ Anybody is welcome to fork this repository and do what they like with it, provid
 I would also appreciate if you could link back to this repository and credit me in your project.
 
 Have fun :)
-
-# Analytics
-This project contains basic google analytics which log the following information:
-- Number of visitors
-- Visitor's Country
-- Whether they arrived via a direct link or a search engine
-- Total number of people on site
-
-This information cannot be linked back to individual users. It is for my own personal use and is not shared with anyone else. This is my first "major" public facing project and being able to see how many people are playing from all over the world is a big factor in my motivation to continue working on it.
 
 <details>
 <summary>How to create a new mode</summary>

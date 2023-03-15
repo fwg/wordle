@@ -14,8 +14,7 @@
 				failed(state) ? "X" : state.guesses
 			}/${state.board.words.length}\n\n    ${state.board.state
 				.slice(0, state.guesses)
-				.map((r) => r.join(""))
-				.join("\n    ")}\nmikhad.github.io/wordle`
+				.map((r) => r.join(""))}`
 		);
 		toaster.pop("Copied");
 	}

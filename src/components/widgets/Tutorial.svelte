@@ -52,6 +52,7 @@
 	<br />
 	Written with Svelte, in Typescript by
 	<a href="https://github.com/MikhaD" target="_blank" rel="noreferrer">MikhaD</a>.
+	Modified by <a href="https://github.com/fwg" target="_blank" rel="noreferrer">fwg</a>.
 </div>
 
 <style lang="scss">
