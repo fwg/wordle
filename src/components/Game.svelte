@@ -13,6 +13,7 @@
 		Tutorial,
 		Statistics,
 		Distribution,
+		Time,
 		Timer,
 		Toaster,
 		ShareGame,
@@ -210,12 +211,7 @@
 		<Distribution distribution={stats.guesses} {game} />
 	{/if}
 	<Separator visible={!game.active}>
-		<Timer
-			slot="1"
-			bind:this={timer}
-			on:timeup={() => (showRefresh = true)}
-			on:reload={reload}
-		/>
+		<Time slot="1" ms={game.timeTaken} />
 		<Share slot="2" state={game} />
 	</Separator>
 	<ShareGame wordNumber={game.wordNumber} />

@@ -231,6 +231,8 @@ export class GameState extends Storable {
 	public time: number;
 	public wordNumber: number;
 	public board: GameBoard;
+	public started: number;
+	public ended: number;
 
 	#valid = false;
 	#mode: GameMode;
@@ -251,6 +253,8 @@ export class GameState extends Storable {
 				words: Array(ROWS).fill(""),
 				state: Array.from({ length: ROWS }, () => (Array(COLS).fill("🔳"))),
 			};
+			this.started = 0;
+			this.ended = 0;
 
 			this.#valid = true;
 		}
@@ -263,6 +267,9 @@ export class GameState extends Storable {
 	}
 	get lastWord() {
 		return this.board.words[this.guesses - 1];
+	}
+	get timeTaken() {
+		return (this.ended - this.started);
 	}
 	/**
 	* Returns an object containing the position of the character in the latest word that violates
@@ -282,6 +289,10 @@ export class GameState extends Storable {
 		return { pos: -1, char: "", type: "⬛" };
 	}
 	guess(word: string) {
+		if (this.started === 0) {
+			this.started = new Date().getTime();
+		}
+		this.ended = new Date().getTime();
 		const characters = word.split("");
 		const result = Array<LetterState>(COLS).fill("⬛");
 		for (let i = 0; i < COLS; ++i) {
@@ -308,6 +319,8 @@ export class GameState extends Storable {
 		this.time = parsed.time;
 		this.wordNumber = parsed.wordNumber;
 		this.board = parsed.board;
+		this.started = parsed.started ?? 0;
+		this.ended = parsed.ended ?? 0;
 
 		this.#valid = true;
 	}
@@ -460,4 +473,11 @@ export function timeRemaining(m: Mode) {
 
 export function failed(s: GameState) {
 	return !(s.active || (s.guesses > 0 && s.board.state[s.guesses - 1].join("") === "🟩".repeat(COLS)));
+}
+
+export function timeFormat(t: number): string {
+	let hours = Math.floor(t / ms.HOUR).toString();
+	let minutes = Math.floor((t % ms.HOUR) / ms.MINUTE).toString();
+	let seconds = Math.floor((t % ms.MINUTE) / ms.SECOND).toString();
+	return `${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}:${seconds.padStart(2, "0")}`;
 }

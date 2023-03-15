@@ -2,7 +2,7 @@
 	import type Toaster from "./Toaster.svelte";
 
 	import { mode } from "../../stores";
-	import { failed, modeData, GameState } from "../../utils";
+	import { failed, modeData, GameState, timeFormat } from "../../utils";
 	import { getContext } from "svelte";
 
 	export let state: GameState;
@@ -12,9 +12,9 @@
 		navigator.clipboard.writeText(
 			`${modeData.modes[$mode].name} Wordle+ #${state.wordNumber} ${
 				failed(state) ? "X" : state.guesses
-			}/${state.board.words.length}\n\n    ${state.board.state
+			}/${state.board.words.length}\nTime: ${timeFormat(state.timeTaken)}\n\n${state.board.state
 				.slice(0, state.guesses)
-				.map((r) => r.join(""))}`
+				.map((r) => r.join("")).join("\n")}\n`
 		);
 		toaster.pop("Copied");
 	}
